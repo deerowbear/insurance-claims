@@ -9,4 +9,13 @@ public interface ClaimLocalService {
 
     public List<ClaimModel> list() throws LocalServiceException;
 
+    public ClaimModel findById(long id) throws LocalServiceException;
+
+    public ClaimModel create(ClaimModel claimModel) throws LocalServiceException;
+
+    public ClaimModel update(long id, ClaimModel claimModel) throws LocalServiceException;
+
+    public void delete(long id) throws LocalServiceException;
+
+
 }

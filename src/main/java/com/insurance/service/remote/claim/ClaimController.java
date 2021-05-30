@@ -21,5 +21,20 @@ public class ClaimController extends BaseRemoteServiceController {
         return claimLocalService.list();
     }
 
+    @RequestMapping(value = { "/create" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ClaimModel create(@RequestBody ClaimModel claimModel)  throws Exception {
+        return claimLocalService.create(claimModel);
+    }
+
+    @RequestMapping(value = { "/update/{id}" }, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ClaimModel update(@PathVariable long id,@RequestBody ClaimModel claimModel)  throws Exception {
+        return claimLocalService.update(id, claimModel);
+    }
+
+    @RequestMapping(value = { "/delete/{id}" }, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable long id)  throws Exception {
+        claimLocalService.delete(id);
+    }
+
 
 }

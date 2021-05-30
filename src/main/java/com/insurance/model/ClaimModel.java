@@ -8,8 +8,8 @@ public class ClaimModel {
 
     private String claimReference;
     private Date incidentDate;
-    private String name;
-    private String detail;
+    private String claimantName;
+    private String claimantDetail;
     private String insurer;
     private String state;
 
@@ -29,20 +29,20 @@ public class ClaimModel {
         this.incidentDate = incidentDate;
     }
 
-    public String getName() {
-        return name;
+    public String getClaimantName() {
+        return claimantName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClaimantName(String claimantName) {
+        this.claimantName = claimantName;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getClaimantDetail() {
+        return claimantDetail;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setClaimantDetail(String claimantDetail) {
+        this.claimantDetail = claimantDetail;
     }
 
     public String getInsurer() {

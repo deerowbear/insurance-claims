@@ -18,11 +18,11 @@ public class Claim implements Serializable {
     @Column(name="incidentDate")
     private Date incidentDate;
 
-    @Column(name="name")
-    private String name;
+    @Column(name="claimantName")
+    private String claimantName;
 
-    @Column
-    private String detail;
+    @Column(name="claimantDetail")
+    private String claimantDetail;
 
     @Column(name="insurer")
     private String insurer;
@@ -54,20 +54,20 @@ public class Claim implements Serializable {
         this.incidentDate = incidentDate;
     }
 
-    public String getName() {
-        return name;
+    public String getClaimantName() {
+        return claimantName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClaimantName(String claimantName) {
+        this.claimantName = claimantName;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getClaimantDetail() {
+        return claimantDetail;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setClaimantDetail(String claimantDetail) {
+        this.claimantDetail = claimantDetail;
     }
 
     public String getInsurer() {
@@ -109,7 +109,8 @@ public class Claim implements Serializable {
         StringBuilder sb = new StringBuilder("com.insurance.service.persistence.domain.claim.Claim[ id=" + id);
         sb.append("\n claimReference = ").append(claimReference);
         sb.append("\n incidentDate = ").append(incidentDate);
-        sb.append("\n name = ").append(name);
+        sb.append("\n claimantName = ").append(claimantName);
+        sb.append("\n claimantDetail = ").append(claimantDetail);
         sb.append("\n insurer = ").append(insurer);
         sb.append("\n state = ").append(state);
         sb.append(" ]");

@@ -15,8 +15,8 @@ public class ClaimModelMapper extends BaseModelMapper implements ModelMapper<Cla
         claimModel.setClaimReference(claim.getClaimReference());
         claimModel.setIncidentDate(claim.getIncidentDate());
         claimModel.setInsurer(claim.getInsurer());
-        claimModel.setName(claim.getName());
-        claimModel.setDetail(claim.getDetail());
+        claimModel.setClaimantName(claim.getClaimantName());
+        claimModel.setClaimantDetail(claim.getClaimantDetail());
         claimModel.setState(claim.getState());
         return claimModel;
     }
@@ -27,8 +27,8 @@ public class ClaimModelMapper extends BaseModelMapper implements ModelMapper<Cla
         claim.setClaimReference(claimModel.getClaimReference());
         claim.setIncidentDate(claimModel.getIncidentDate());
         claim.setInsurer(claimModel.getInsurer());
-        claim.setName(claimModel.getName());
-        claim.setDetail(claimModel.getDetail());
+        claim.setClaimantName(claimModel.getClaimantName());
+        claim.setClaimantDetail(claimModel.getClaimantDetail());
         claim.setState(claimModel.getState());
         return claim;
     }

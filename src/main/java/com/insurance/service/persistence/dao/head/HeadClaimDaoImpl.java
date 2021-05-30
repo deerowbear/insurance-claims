@@ -1,42 +1,38 @@
-package com.insurance.service.persistence.dao.claim;
+package com.insurance.service.persistence.dao.head;
 
-import com.insurance.service.persistence.dao.claim.repository.ClaimRepository;
-import com.insurance.service.persistence.domain.claim.Claim;
+import com.insurance.service.persistence.dao.head.repository.HeadClaimRepository;
+import com.insurance.service.persistence.domain.head.HeadClaim;
 import com.insurance.service.persistence.exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceException;
 import java.util.List;
 
+public class HeadClaimDaoImpl implements HeadClaimDao {
 
-@Repository
-public class ClaimDaoImpl implements ClaimDao {
-
-    private final ClaimRepository claimRepository;
+    private final HeadClaimRepository headClaimRepository;
 
     @Autowired
-    public ClaimDaoImpl(ClaimRepository claimRepository) {
-        this.claimRepository = claimRepository;
-    }
-
-
-    @Override
-    @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
-    public List<Claim> findAll() throws PersistenceException, DataNotFoundException {
-        return claimRepository.findAll();
+    public HeadClaimDaoImpl(HeadClaimRepository headClaimRepository) {
+        this.headClaimRepository = headClaimRepository;
     }
 
     @Override
     @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
-    public Claim findById(Long id) throws DataNotFoundException, PersistenceException {
+    public List<HeadClaim> findAll() throws PersistenceException, DataNotFoundException {
+        return headClaimRepository.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
+    public HeadClaim findById(Long id) throws DataNotFoundException, PersistenceException {
         if ( id == null ) {
-            throw new DataNotFoundException("Claim id " + id + " does not exist");
+            throw new DataNotFoundException("HeadClaim id " + id + " does not exist");
         }
         try {
-            return claimRepository.findById(id).orElse(null);
+            return headClaimRepository.findById(id).orElse(null);
         } catch (Exception e) {
             throw new DataNotFoundException(e);
         }
@@ -44,21 +40,21 @@ public class ClaimDaoImpl implements ClaimDao {
 
     @Override
     @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
-    public Claim create(Claim claim) throws PersistenceException, PersistenceException {
-        if ( claim == null ) {
-            throw new IllegalArgumentException("Claim object can not be null");
+    public HeadClaim create(HeadClaim headClaim) throws PersistenceException, PersistenceException {
+        if ( headClaim == null ) {
+            throw new IllegalArgumentException("HeadClaim object can not be null");
         }
-        return claimRepository.save(claim);
+        return headClaimRepository.save(headClaim);
     }
 
     @Override
     @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
-    public Claim update(Claim claim) throws DataNotFoundException, PersistenceException, DataNotFoundException {
-        if ( claim == null ) {
+    public HeadClaim update(HeadClaim headClaim) throws DataNotFoundException, PersistenceException, DataNotFoundException {
+        if ( headClaim == null ) {
             throw new IllegalArgumentException("Claim object can not be null");
         }
         try {
-            return claimRepository.saveAndFlush(claim);
+            return headClaimRepository.saveAndFlush(headClaim);
         } catch (Exception e) {
             throw new PersistenceException(e);
         }
@@ -67,18 +63,17 @@ public class ClaimDaoImpl implements ClaimDao {
     @Override
     @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
     public void deleteById(Long id) throws DataNotFoundException, PersistenceException {
-        if ( !claimRepository.existsById(id) ) {
-            throw new DataNotFoundException("Claim with id " + id + " does not exist");
+        if ( !headClaimRepository.existsById(id) ) {
+            throw new DataNotFoundException("HeadClaim with id " + id + " does not exist");
         }
         try {
-            Claim claim = claimRepository.getById(id);
-            claimRepository.delete(claim);
-            claimRepository.flush();
+            HeadClaim headClaim = headClaimRepository.getById(id);
+            headClaimRepository.delete(headClaim);
+            headClaimRepository.flush();
         } catch (Exception e) {
             throw new PersistenceException(e);
         }
     }
-
 
     @Override
     @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
@@ -87,9 +82,10 @@ public class ClaimDaoImpl implements ClaimDao {
             throw new IllegalArgumentException("Claim id can not be null");
         }
         try {
-            return claimRepository.existsById(id);
+            return headClaimRepository.existsById(id);
         } catch (Exception e) {
             throw new PersistenceException(e);
         }
     }
+
 }
