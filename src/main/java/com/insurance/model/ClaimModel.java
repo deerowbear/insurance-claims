@@ -9,6 +9,7 @@ public class ClaimModel {
     private String claimReference;
     private Date incidentDate;
     private String name;
+    private String detail;
     private String insurer;
     private String state;
 
@@ -34,6 +35,14 @@ public class ClaimModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getInsurer() {

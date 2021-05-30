@@ -21,6 +21,9 @@ public class Claim implements Serializable {
     @Column(name="name")
     private String name;
 
+    @Column
+    private String detail;
+
     @Column(name="insurer")
     private String insurer;
 
@@ -57,6 +60,14 @@ public class Claim implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getInsurer() {
