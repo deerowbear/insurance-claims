@@ -1,21 +1,26 @@
 package com.insurance.service.persistence.domain.claim;
 
+import com.insurance.service.persistence.domain.head.HeadClaim;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="CLAIM")
 public class Claim implements Serializable {
 
     @Id
+    @Column(name = "claim_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long claimId;
 
     @Column(name="claimReference")
     private String claimReference;
 
     @Column(name="incidentDate")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date incidentDate;
 
     @Column(name="claimantName")
@@ -30,12 +35,15 @@ public class Claim implements Serializable {
     @Column(name="state")
     private String state;
 
-    public Long getId() {
-        return id;
+    @OneToMany(mappedBy = "claim" , fetch = FetchType.LAZY , cascade = CascadeType.REMOVE , orphanRemoval = true)
+    private Set<HeadClaim> headClaims;
+
+    public Long getClaimId() {
+        return claimId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClaimId(Long claimId) {
+        this.claimId = claimId;
     }
 
     public String getClaimReference() {
@@ -86,6 +94,14 @@ public class Claim implements Serializable {
         this.state = state;
     }
 
+    public Set<HeadClaim> getHeadClaims() {
+        return headClaims;
+    }
+
+    public void setHeadClaims(Set<HeadClaim> headClaims) {
+        this.headClaims = headClaims;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -96,17 +112,17 @@ public class Claim implements Serializable {
             return false;
 
         Claim other = (Claim) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (claimId == null) {
+            if (other.claimId != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!claimId.equals(other.claimId))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("com.insurance.service.persistence.domain.claim.Claim[ id=" + id);
+        StringBuilder sb = new StringBuilder("com.insurance.service.persistence.domain.claim.Claim[ id=" + claimId);
         sb.append("\n claimReference = ").append(claimReference);
         sb.append("\n incidentDate = ").append(incidentDate);
         sb.append("\n claimantName = ").append(claimantName);

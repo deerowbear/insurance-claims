@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 @Repository
 public interface ClaimRepository extends JpaRepository<Claim, Long> {
+
 
 
 }

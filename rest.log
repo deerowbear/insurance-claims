@@ -1,1 +1,5 @@
 2021-05-29 15:37:01 ERROR ClaimLocalServiceImpl:27 - org.springframework.dao.InvalidDataAccessResourceUsageException: could not prepare statement; SQL [select claim0_.id as id1_0_, claim0_.claim_reference as claim_re2_0_, claim0_.incident_date as incident3_0_, claim0_.insurer as insurer4_0_, claim0_.name as name5_0_, claim0_.state as state6_0_ from claim claim0_]; nested exception is org.hibernate.exception.SQLGrammarException: could not prepare statement
+2021-05-31 22:34:22 ERROR ClaimLocalServiceImpl:31 - javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement
+2021-05-31 22:40:47 ERROR ClaimLocalServiceImpl:31 - javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement
+2021-05-31 22:44:48 ERROR ClaimLocalServiceImpl:31 - javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement
+2021-05-31 22:47:59 ERROR ClaimLocalServiceImpl:31 - javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement

@@ -60,4 +60,15 @@ public class ClaimModel {
     public void setState(String state) {
         this.state = state;
     }
+
+    public boolean isClaimReady() {
+        if(claimReference != null || !claimReference.isBlank() &&
+          incidentDate != null &&
+          claimantName != null || !claimantName.isBlank() &&
+          claimantDetail != null || !claimantDetail.isBlank() &&
+          insurer != null || !insurer.isBlank()) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -39,7 +39,7 @@ public class HeadClaimDaoImpl implements HeadClaimDao {
     }
 
     @Override
-    @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public HeadClaim create(HeadClaim headClaim) throws PersistenceException, PersistenceException {
         if ( headClaim == null ) {
             throw new IllegalArgumentException("HeadClaim object can not be null");
@@ -48,7 +48,7 @@ public class HeadClaimDaoImpl implements HeadClaimDao {
     }
 
     @Override
-    @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public HeadClaim update(HeadClaim headClaim) throws DataNotFoundException, PersistenceException, DataNotFoundException {
         if ( headClaim == null ) {
             throw new IllegalArgumentException("Claim object can not be null");
@@ -61,7 +61,7 @@ public class HeadClaimDaoImpl implements HeadClaimDao {
     }
 
     @Override
-    @Transactional(readOnly = true , propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void deleteById(Long id) throws DataNotFoundException, PersistenceException {
         if ( !headClaimRepository.existsById(id) ) {
             throw new DataNotFoundException("HeadClaim with id " + id + " does not exist");

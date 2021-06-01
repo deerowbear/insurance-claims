@@ -1,23 +1,23 @@
 package com.insurance.service.persistence.domain.head;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.insurance.service.persistence.domain.claim.Claim;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="CLAIM_HEAD")
+@Table(name="HEAD_CLAIM")
 public class HeadClaim  implements Serializable {
 
-/**
- * •	costs and details
- * (These will differ dependant on whether this is a vehicle damage, recovery or storage loss)
- * •	state
- */
-
     @Id
+    @Column(name = "head_claim_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long headClaimId;
+
+    @Basic(optional = false)
+    @Column(name = "claim_id")
+    private Long claimId;
 
     @Column(name="cost")
     private Integer cost;
@@ -28,12 +28,25 @@ public class HeadClaim  implements Serializable {
     @Column(name="state")
     private String state;
 
-    public Long getId() {
-        return id;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "claim_id", insertable = false, updatable = false)
+    private Claim claim;
+
+    public Long getHeadClaimId() {
+        return headClaimId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHeadClaimId(Long headClaimId) {
+        this.headClaimId = headClaimId;
+    }
+
+    public Long getClaimId() {
+        return claimId;
+    }
+
+    public void setClaimId(Long claimId) {
+        this.claimId = claimId;
     }
 
     public Integer getCost() {
@@ -60,6 +73,14 @@ public class HeadClaim  implements Serializable {
         this.state = state;
     }
 
+    public Claim getClaim() {
+        return claim;
+    }
+
+    public void setClaim(Claim claim) {
+        this.claim = claim;
+    }
+
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -69,17 +90,17 @@ public class HeadClaim  implements Serializable {
             return false;
 
         HeadClaim other = (HeadClaim) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (headClaimId == null) {
+            if (other.headClaimId != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!headClaimId.equals(other.headClaimId))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("com.insurance.service.persistence.domain.head.HeadClaim[ id=" + id);
+        StringBuilder sb = new StringBuilder("com.insurance.service.persistence.domain.head.HeadClaim[ id=" + headClaimId);
         sb.append("\n cost = ").append(cost);
         sb.append("\n detail = ").append(detail);
         sb.append("\n state = ").append(state);
